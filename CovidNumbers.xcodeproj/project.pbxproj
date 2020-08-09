@@ -15,6 +15,12 @@
 		9499056D24E0AB6A00B83A80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9499054224E0AB6800B83A80 /* ContentView.swift */; };
 		9499056E24E0AB6A00B83A80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9499054324E0AB6A00B83A80 /* Assets.xcassets */; };
 		9499056F24E0AB6A00B83A80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9499054324E0AB6A00B83A80 /* Assets.xcassets */; };
+		9499057F24E0AE4C00B83A80 /* StatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9499057E24E0AE4C00B83A80 /* StatesView.swift */; };
+		9499058024E0AE4C00B83A80 /* StatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9499057E24E0AE4C00B83A80 /* StatesView.swift */; };
+		9499058224E0AE5B00B83A80 /* CountriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9499058124E0AE5B00B83A80 /* CountriesView.swift */; };
+		9499058324E0AE5B00B83A80 /* CountriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9499058124E0AE5B00B83A80 /* CountriesView.swift */; };
+		9499058524E0AE6900B83A80 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9499058424E0AE6900B83A80 /* AboutView.swift */; };
+		9499058624E0AE6900B83A80 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9499058424E0AE6900B83A80 /* AboutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +55,9 @@
 		9499056324E0AB6A00B83A80 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9499056724E0AB6A00B83A80 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		9499056924E0AB6A00B83A80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9499057E24E0AE4C00B83A80 /* StatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatesView.swift; sourceTree = "<group>"; };
+		9499058124E0AE5B00B83A80 /* CountriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesView.swift; sourceTree = "<group>"; };
+		9499058424E0AE6900B83A80 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				9499054124E0AB6800B83A80 /* CovidNumbersApp.swift */,
-				9499054224E0AB6800B83A80 /* ContentView.swift */,
+				9499058724E0AE8900B83A80 /* Views */,
 				9499054324E0AB6A00B83A80 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -149,6 +158,17 @@
 				9499056924E0AB6A00B83A80 /* Info.plist */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		9499058724E0AE8900B83A80 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9499054224E0AB6800B83A80 /* ContentView.swift */,
+				9499057E24E0AE4C00B83A80 /* StatesView.swift */,
+				9499058124E0AE5B00B83A80 /* CountriesView.swift */,
+				9499058424E0AE6900B83A80 /* AboutView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,7 +329,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9499056C24E0AB6A00B83A80 /* ContentView.swift in Sources */,
+				9499058224E0AE5B00B83A80 /* CountriesView.swift in Sources */,
 				9499056A24E0AB6A00B83A80 /* CovidNumbersApp.swift in Sources */,
+				9499057F24E0AE4C00B83A80 /* StatesView.swift in Sources */,
+				9499058524E0AE6900B83A80 /* AboutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,7 +341,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9499056D24E0AB6A00B83A80 /* ContentView.swift in Sources */,
+				9499058324E0AE5B00B83A80 /* CountriesView.swift in Sources */,
 				9499056B24E0AB6A00B83A80 /* CovidNumbersApp.swift in Sources */,
+				9499058024E0AE4C00B83A80 /* StatesView.swift in Sources */,
+				9499058624E0AE6900B83A80 /* AboutView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
