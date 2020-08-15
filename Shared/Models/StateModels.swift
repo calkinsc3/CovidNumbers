@@ -7,6 +7,9 @@
 
 import Foundation
 
+//MARK: - StateData
+public typealias StateData = [StateDatum]
+
 // MARK: - StateDatum
 public struct StateDatum: Codable {
     let state: String
@@ -14,5 +17,3 @@ public struct StateDatum: Codable {
     let todayDeaths, active, casesPerOneMillion, deathsPerOneMillion: Int
     let tests, testsPerOneMillion: Int
 }
-
-public typealias StateData = [StateDatum]
