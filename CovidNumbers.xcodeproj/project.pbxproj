@@ -37,6 +37,8 @@
 		FAD879C324E894AC007AD6E4 /* PublisherErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD879C124E894AC007AD6E4 /* PublisherErrors.swift */; };
 		FAD879C524E89C75007AD6E4 /* Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD879C424E89C75007AD6E4 /* Parsing.swift */; };
 		FAD879C624E89C75007AD6E4 /* Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD879C424E89C75007AD6E4 /* Parsing.swift */; };
+		FAD879C824E8A5A9007AD6E4 /* EndPointBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD879C724E8A5A9007AD6E4 /* EndPointBuilder.swift */; };
+		FAD879C924E8A5A9007AD6E4 /* EndPointBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD879C724E8A5A9007AD6E4 /* EndPointBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +85,7 @@
 		FAD879BD24E8936E007AD6E4 /* CountryFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryFetcher.swift; sourceTree = "<group>"; };
 		FAD879C124E894AC007AD6E4 /* PublisherErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherErrors.swift; sourceTree = "<group>"; };
 		FAD879C424E89C75007AD6E4 /* Parsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parsing.swift; sourceTree = "<group>"; };
+		FAD879C724E8A5A9007AD6E4 /* EndPointBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointBuilder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +228,7 @@
 				FAD879C124E894AC007AD6E4 /* PublisherErrors.swift */,
 				FAD879BA24E8935F007AD6E4 /* StatesFetcher.swift */,
 				FAD879C424E89C75007AD6E4 /* Parsing.swift */,
+				FAD879C724E8A5A9007AD6E4 /* EndPointBuilder.swift */,
 			);
 			path = Fetchers;
 			sourceTree = "<group>";
@@ -397,6 +401,7 @@
 				9499058C24E0B1E600B83A80 /* CountryModels.swift in Sources */,
 				FAD879C224E894AC007AD6E4 /* PublisherErrors.swift in Sources */,
 				FAD879BB24E8935F007AD6E4 /* StatesFetcher.swift in Sources */,
+				FAD879C824E8A5A9007AD6E4 /* EndPointBuilder.swift in Sources */,
 				9499056A24E0AB6A00B83A80 /* CovidNumbersApp.swift in Sources */,
 				9499057F24E0AE4C00B83A80 /* StatesView.swift in Sources */,
 				9499058524E0AE6900B83A80 /* AboutView.swift in Sources */,
@@ -416,6 +421,7 @@
 				9499058D24E0B1E600B83A80 /* CountryModels.swift in Sources */,
 				FAD879C324E894AC007AD6E4 /* PublisherErrors.swift in Sources */,
 				FAD879BC24E8935F007AD6E4 /* StatesFetcher.swift in Sources */,
+				FAD879C924E8A5A9007AD6E4 /* EndPointBuilder.swift in Sources */,
 				9499056B24E0AB6A00B83A80 /* CovidNumbersApp.swift in Sources */,
 				9499058024E0AE4C00B83A80 /* StatesView.swift in Sources */,
 				9499058624E0AE6900B83A80 /* AboutView.swift in Sources */,
