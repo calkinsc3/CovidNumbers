@@ -27,6 +27,10 @@
 		9499059024E0B4C100B83A80 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9499058F24E0B4C100B83A80 /* ModelTests.swift */; };
 		9499059224E0B5AD00B83A80 /* States.json in Resources */ = {isa = PBXBuildFile; fileRef = 9499059124E0B5AD00B83A80 /* States.json */; };
 		9499059424E0B5E100B83A80 /* Countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 9499059324E0B5E100B83A80 /* Countries.json */; };
+		94DC06972507F21700E7E9C7 /* Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC06962507F21600E7E9C7 /* Logs.swift */; };
+		94DC06982507F21700E7E9C7 /* Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC06962507F21600E7E9C7 /* Logs.swift */; };
+		94E7850F2507E9C500199164 /* StatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E7850E2507E9C500199164 /* StatesViewModel.swift */; };
+		94E785102507E9C500199164 /* StatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E7850E2507E9C500199164 /* StatesViewModel.swift */; };
 		FAD879B824E8930F007AD6E4 /* Fetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD879B724E8930F007AD6E4 /* Fetchable.swift */; };
 		FAD879B924E8930F007AD6E4 /* Fetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD879B724E8930F007AD6E4 /* Fetchable.swift */; };
 		FAD879BB24E8935F007AD6E4 /* StatesFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD879BA24E8935F007AD6E4 /* StatesFetcher.swift */; };
@@ -80,6 +84,8 @@
 		9499058F24E0B4C100B83A80 /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		9499059124E0B5AD00B83A80 /* States.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = States.json; sourceTree = "<group>"; };
 		9499059324E0B5E100B83A80 /* Countries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Countries.json; sourceTree = "<group>"; };
+		94DC06962507F21600E7E9C7 /* Logs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logs.swift; sourceTree = "<group>"; };
+		94E7850E2507E9C500199164 /* StatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatesViewModel.swift; sourceTree = "<group>"; };
 		FAD879B724E8930F007AD6E4 /* Fetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetchable.swift; sourceTree = "<group>"; };
 		FAD879BA24E8935F007AD6E4 /* StatesFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatesFetcher.swift; sourceTree = "<group>"; };
 		FAD879BD24E8936E007AD6E4 /* CountryFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryFetcher.swift; sourceTree = "<group>"; };
@@ -138,7 +144,9 @@
 				9499054124E0AB6800B83A80 /* CovidNumbersApp.swift */,
 				9499058724E0AE8900B83A80 /* Views */,
 				9499054324E0AB6A00B83A80 /* Assets.xcassets */,
+				94E785112507E9CD00199164 /* ViewModels */,
 				9499058E24E0B1EF00B83A80 /* Models */,
+				94DC06992507F22500E7E9C7 /* Utils */,
 				FAD879C024E89385007AD6E4 /* Fetchers */,
 			);
 			path = Shared;
@@ -218,6 +226,22 @@
 				9499059324E0B5E100B83A80 /* Countries.json */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		94DC06992507F22500E7E9C7 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				94DC06962507F21600E7E9C7 /* Logs.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		94E785112507E9CD00199164 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				94E7850E2507E9C500199164 /* StatesViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		FAD879C024E89385007AD6E4 /* Fetchers */ = {
@@ -392,6 +416,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94E7850F2507E9C500199164 /* StatesViewModel.swift in Sources */,
+				94DC06972507F21700E7E9C7 /* Logs.swift in Sources */,
 				FAD879B824E8930F007AD6E4 /* Fetchable.swift in Sources */,
 				9499056C24E0AB6A00B83A80 /* ContentView.swift in Sources */,
 				FAD879BE24E8936E007AD6E4 /* CountryFetcher.swift in Sources */,
@@ -412,6 +438,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94E785102507E9C500199164 /* StatesViewModel.swift in Sources */,
+				94DC06982507F21700E7E9C7 /* Logs.swift in Sources */,
 				FAD879B924E8930F007AD6E4 /* Fetchable.swift in Sources */,
 				9499056D24E0AB6A00B83A80 /* ContentView.swift in Sources */,
 				FAD879BF24E8936E007AD6E4 /* CountryFetcher.swift in Sources */,
