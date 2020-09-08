@@ -18,3 +18,26 @@ enum CountryPublisherErrors: Error {
     case decoding(description: String)
     case apiError(description: String)
 }
+
+enum PublisherError: Swift.Error, CustomStringConvertible {
+    
+    case network, parsing, unknown
+    
+    var description: String {
+        switch self {
+        case .network: return "A network error occured."
+        case .parsing: return "A parsing error occured."
+        case .unknown: return "An unknown error occured."
+        }
+    }
+    
+    init(_ error: Swift.Error) {
+        switch error {
+        case is URLError: self = .network
+        case is DecodingError: self = .parsing
+        default:
+            self = error as? PublisherError ?? .unknown
+        }
+    }
+    
+}

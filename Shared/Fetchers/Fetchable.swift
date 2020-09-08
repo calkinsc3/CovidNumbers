@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-typealias StatesPublisher = AnyPublisher<StateData, StatePublisherErrors>
+typealias StatesPublisher = AnyPublisher<StateData, PublisherError>
 typealias CountryPublisher = AnyPublisher<CountryData, CountryPublisherErrors>
 
 protocol StatesFetchable {

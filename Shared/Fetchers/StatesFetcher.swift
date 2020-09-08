@@ -29,16 +29,15 @@ extension StatesFetcher: StatesFetchable {
     }
     
     //MARK:- Network Adaptor
-    private func stateItems<T>(with components:URLComponents) -> AnyPublisher<T, StatePublisherErrors> where T:Decodable {
+    private func stateItems<T>(with components:URLComponents) -> AnyPublisher<T, PublisherError> where T:Decodable {
         
         guard let url = components.url else {
-            let error = StatePublisherErrors.network(description: "Could not create URL for State data.")
-            return Fail(error: error).eraseToAnyPublisher()
+            return Fail(error: PublisherError.network).eraseToAnyPublisher()
         }
         
         return session.dataTaskPublisher(for: url)
             .mapError { error in
-                StatePublisherErrors.network(description: error.localizedDescription)
+                PublisherError(error)
             }
             .flatMap { returnedPair in
                 decode(returnedPair.data)

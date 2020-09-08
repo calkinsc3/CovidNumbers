@@ -5,9 +5,11 @@
 //  Created by William Calkins on 8/9/20.
 //
 
-import Foundation
-import CovidNumbers
 import XCTest
+import Foundation
+
+@testable import CovidNumbers
+
 
 class ModelTests: XCTestCase {
     
@@ -30,14 +32,14 @@ class ModelTests: XCTestCase {
         XCTAssertNotNil(stateData, "State mock did not load.")
         
         //decode the data
-//        if let givenStateData = stateData {
-//            do {
-//                let stateModels = try jsonDecoder.decode(StateData.self, from: givenStateData)
-//                XCTAssertTrue(stateModels.count == 56, "State count should be 56. Count is \(stateModels.count)")
-//            } catch  {
-//                XCTFail("Failed to decode State data: \(error)")
-//            }
-//        }
+        if let givenStateData = stateData {
+            do {
+                let stateModels = try jsonDecoder.decode(StateData.self, from: givenStateData)
+                XCTAssertTrue(stateModels.count == 56, "State count should be 56. Count is \(stateModels.count)")
+            } catch  {
+                XCTFail("Failed to decode State data: \(error)")
+            }
+        }
     }
     
     func testCountryModels() throws {
