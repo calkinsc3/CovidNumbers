@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import os
 
-final class StatesViewModel: ObservableObject {
+class StatesViewModel: ObservableObject {
     
     @Published var stateResults: StateData = []
     
@@ -41,11 +41,9 @@ final class StatesViewModel: ObservableObject {
                 }
             } receiveValue: { [weak self] stateModels in
                 guard let self = self else { return }
-                self.stateResults = stateModels
+                self.stateResults = stateModels.sorted(by: {$0.state < $1.state})
             }
             .store(in: &disposables)
-
-        
     }
     
 }

@@ -9,20 +9,25 @@ import SwiftUI
 
 struct StatesView: View {
     
-    @ObservedObject var statesViewModel = StatesViewModel()
+    @StateObject var statesViewModel = StatesViewModel()
     
     var body: some View {
         NavigationView {
-            Divider()
-            
-            List(self.statesViewModel.stateResults) { state in
-                StateDetailView(givenState: state)
+            VStack {
+                Divider()
+                
+                List(self.statesViewModel.stateResults) { state in
+                    NavigationLink(destination: StateDetailView(givenState: state)) {
+                        StateDetailCellView(givenState: state)
+                    }
+                }
             }
+            
         }
     }
 }
 
-struct StateDetailView: View {
+struct StateDetailCellView: View {
     
     var givenState: StateDatum
     
@@ -37,8 +42,26 @@ struct StateDetailView: View {
     
 }
 
+struct StateDetailView: View {
+    
+    var givenState: StateDatum
+    
+    var body: some View {
+        VStack {
+            Text(givenState.state)
+            Text("Cases: \(givenState.cases)")
+            Text("Active: \(givenState.active)")
+            Text("Deaths: \(givenState.deaths)")
+        }
+    }
+}
+
 struct StatesView_Previews: PreviewProvider {
     static var previews: some View {
-        StatesView()
+        Group {
+            StatesView()
+            StateDetailCellView(givenState: StateDatum.placeholder)
+        }
+        
     }
 }
