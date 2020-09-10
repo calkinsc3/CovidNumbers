@@ -32,12 +32,18 @@ struct StateDetailCellView: View {
     var givenState: StateDatum
     
     var body: some View {
-        VStack {
-            Text(givenState.state)
-            Text("Cases: \(givenState.cases)")
-            Text("Active: \(givenState.active)")
-            Text("Deaths: \(givenState.deaths)")
+        VStack(alignment: .leading) {
+            HStack {
+                Text(givenState.state)
+                    .font(.title)
+                Text("Cases: \(givenState.cases)")
+            }
+            HStack {
+                Text("Active: \(givenState.active)")
+                Text("Deaths: \(givenState.deaths)")
+            }
         }
+        .navigationTitle("States")
     }
     
 }
