@@ -11,7 +11,7 @@ import os
 
 class StatesViewModel: ObservableObject {
     
-    @Published var stateResults: StateData = []
+    @Published var stateResults: StateData = [StateDatum.placeholder, StateDatum.placeholder, StateDatum.placeholder]
     
     private let stateDataFetcher = StatesFetcher()
     private var disposables = Set<AnyCancellable>()

@@ -11,6 +11,8 @@ struct StatesView: View {
     
     @StateObject var statesViewModel = StatesViewModel()
     
+    @State private var showingSortMenu = false
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -22,9 +24,42 @@ struct StatesView: View {
                     }
                 }
             }
-            
+            .navigationTitle("States")
+            .navigationBarItems(trailing: self.sortActionSheetButton)
+            .actionSheet(isPresented: $showingSortMenu, content: {
+                self.sortingActionSheet
+            })
         }
     }
+}
+
+private extension StatesView {
+    
+    var sortingActionSheet: ActionSheet {
+        
+        ActionSheet(title: Text("Sort By"),
+                    message: Text("How would you like to sort the States?"), buttons: [
+                        .default(Text("Cases"), action: {
+                            self.statesViewModel.stateResults = self.statesViewModel.stateResults.sorted(by: {$0.cases > $1.cases })
+                        }),
+                        .default(Text("Active"), action: {
+                            self.statesViewModel.stateResults = self.statesViewModel.stateResults.sorted(by: {$0.active > $1.active})
+                        }),
+                        .default(Text("Deaths"), action: {
+                            self.statesViewModel.stateResults = self.statesViewModel.stateResults.sorted(by: {$0.deaths > $1.deaths})
+                        }),
+                        .cancel(Text("Cancel"))
+                    ])
+    }
+    
+    var sortActionSheetButton: some View {
+        Button(action: {
+            self.showingSortMenu.toggle()
+        }, label: {
+            Image(systemName: "arrow.up.arrow.down.square").font(.title)
+        })
+    }
+    
 }
 
 struct StateDetailCellView: View {
@@ -35,7 +70,7 @@ struct StateDetailCellView: View {
         VStack(alignment: .leading) {
             HStack {
                 Text(givenState.state)
-                    .font(.title)
+                    .font(.headline)
                 Text("Cases: \(givenState.cases)")
             }
             HStack {
@@ -43,7 +78,7 @@ struct StateDetailCellView: View {
                 Text("Deaths: \(givenState.deaths)")
             }
         }
-        .navigationTitle("States")
+        
     }
     
 }
