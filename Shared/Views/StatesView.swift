@@ -23,9 +23,15 @@ struct StatesView: View {
                         StateDetailCellView(givenState: state)
                     }
                 }
+                .toolbar(content: {
+                    ToolbarItem {
+                        //self.sortActionSheetButton
+                        self.sortButtonMenu
+                    }
+                })
             }
             .navigationTitle("States")
-            .navigationBarItems(trailing: self.sortActionSheetButton)
+            //.navigationBarItems(trailing: self.sortActionSheetButton)
             .actionSheet(isPresented: $showingSortMenu, content: {
                 self.sortingActionSheet
             })
@@ -56,8 +62,30 @@ private extension StatesView {
         Button(action: {
             self.showingSortMenu.toggle()
         }, label: {
-            Image(systemName: "arrow.up.arrow.down.square").font(.title)
+            Label("Sort States", systemImage: "arrow.up.arrow.down.square")
         })
+    }
+    
+    var sortButtonMenu: some View {
+        
+        Menu("Sort") {
+            Button(action: {
+                self.statesViewModel.stateResults = self.statesViewModel.stateResults.sorted(by: {$0.cases > $1.cases })
+            }, label: {
+                Label("Cases", systemImage: "bed.double")
+            })
+            Button(action: {
+                self.statesViewModel.stateResults = self.statesViewModel.stateResults.sorted(by: {$0.active > $1.active})
+            }, label: {
+                Label("Active", systemImage: "bandage")
+            })
+            Button(action: {
+                self.statesViewModel.stateResults = self.statesViewModel.stateResults.sorted(by: {$0.deaths > $1.deaths})
+            }, label: {
+                Label("Deaths", systemImage: "waveform.path.ecg")
+            })
+        }
+        .font(.headline)
     }
     
 }
