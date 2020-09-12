@@ -11,7 +11,8 @@ import Foundation
 typealias CountryData = [CountryDatum]
 
 //MARK: - CountryDatum
-struct CountryDatum: Codable {
+struct CountryDatum: Codable, Identifiable, Equatable, Hashable {
+    let id = UUID()
     let updated: Int
     let country: String
     let countryInfo: CountryInfo
@@ -25,7 +26,7 @@ struct CountryDatum: Codable {
     let activePerOneMillion, recoveredPerOneMillion, criticalPerOneMillion: Double
 }
 
-enum Continent: String, Codable {
+enum Continent: String, Codable, Equatable, Hashable {
     case africa = "Africa"
     case asia = "Asia"
     case australiaOceania = "Australia/Oceania"
@@ -35,7 +36,7 @@ enum Continent: String, Codable {
 }
 
 // MARK: - CountryInfo
-struct CountryInfo: Codable {
+struct CountryInfo: Codable, Equatable, Hashable {
     let _id: Int?
     let iso2, iso3: String?
     let lat, long: Double

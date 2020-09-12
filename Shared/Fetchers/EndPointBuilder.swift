@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum StateSorts: String {
+enum SortOptions: String {
     case cases, todayCases, deaths, active
 }
 

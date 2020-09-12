@@ -25,46 +25,16 @@ struct StatesView: View {
                 }
                 .toolbar(content: {
                     ToolbarItem {
-                        //self.sortActionSheetButton
                         self.sortButtonMenu
                     }
                 })
             }
             .navigationTitle("States")
-            //.navigationBarItems(trailing: self.sortActionSheetButton)
-            .actionSheet(isPresented: $showingSortMenu, content: {
-                self.sortingActionSheet
-            })
         }
     }
 }
 
 private extension StatesView {
-    
-    var sortingActionSheet: ActionSheet {
-        
-        ActionSheet(title: Text("Sort By"),
-                    message: Text("How would you like to sort the States?"), buttons: [
-                        .default(Text("Cases"), action: {
-                            self.statesViewModel.stateResults = self.statesViewModel.stateResults.sorted(by: {$0.cases > $1.cases })
-                        }),
-                        .default(Text("Active"), action: {
-                            self.statesViewModel.stateResults = self.statesViewModel.stateResults.sorted(by: {$0.active > $1.active})
-                        }),
-                        .default(Text("Deaths"), action: {
-                            self.statesViewModel.stateResults = self.statesViewModel.stateResults.sorted(by: {$0.deaths > $1.deaths})
-                        }),
-                        .cancel(Text("Cancel"))
-                    ])
-    }
-    
-    var sortActionSheetButton: some View {
-        Button(action: {
-            self.showingSortMenu.toggle()
-        }, label: {
-            Label("Sort States", systemImage: "arrow.up.arrow.down.square")
-        })
-    }
     
     var sortButtonMenu: some View {
         

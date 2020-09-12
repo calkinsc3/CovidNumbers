@@ -49,14 +49,15 @@ extension StatesFetcher: StatesFetchable {
 //MARK:- Endpoint Builder
 private extension StatesFetcher {
     
-    func makeAllStateComponents(sortBy sort: StateSorts, includeYesterday yesterday: Bool) -> URLComponents {
+    func makeAllStateComponents(sortBy sort: SortOptions, includeYesterday yesterday: Bool) -> URLComponents {
         
         var components = URLComponents()
         
         components.scheme = DISEASESH_API.schema
         components.host = DISEASESH_API.host
         components.path = DISEASESH_API.statesBasePath
-        components.queryItems = [URLQueryItem(name: "sort", value: sort.rawValue), URLQueryItem(name: "yesterday", value: yesterday ? "true" : "false")]
+        components.queryItems = [URLQueryItem(name: "sort", value: sort.rawValue),
+                                 URLQueryItem(name: "yesterday", value: yesterday ? "true" : "false")]
         
         return components
     }

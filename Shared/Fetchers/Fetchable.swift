@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 typealias StatesPublisher = AnyPublisher<StateData, PublisherError>
-typealias CountryPublisher = AnyPublisher<CountryData, CountryPublisherErrors>
+typealias CountryPublisher = AnyPublisher<CountryData, PublisherError>
 
 protocol StatesFetchable {
     func fetchAllStates() -> StatesPublisher

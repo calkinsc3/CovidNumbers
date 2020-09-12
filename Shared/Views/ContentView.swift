@@ -30,17 +30,16 @@ struct ContentView: View {
                         Image(systemName: "info.circle")
                         Text("Countries")
                     }
-                    
                 }
                 .tag(2)
+            
             AboutView()
                 .font(.title)
                 .tabItem {
                     VStack {
                         Image(systemName: "info.circle")
-                        Text("Countries")
+                        Text("About")
                     }
-                    
                 }
                 .tag(3)
         }
