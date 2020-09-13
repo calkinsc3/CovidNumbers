@@ -62,7 +62,7 @@ private extension StatesView {
 
 struct StateDetailCellView: View {
     
-    var givenState: StateDatum
+    let givenState: StateDatum
     
     var body: some View {
         VStack(alignment: .leading) {

@@ -20,6 +20,7 @@ class CountryFetcher {
 
 //MARK:- Fetchable Conformance
 extension CountryFetcher: CountriesFetchable {
+    
     func fetchAllCountries() -> CountryPublisher {
         return countryItems(with: self.makeAllCountryComponents(sortBy: .active, includedYesterday: true))
     }

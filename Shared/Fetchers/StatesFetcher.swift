@@ -20,6 +20,7 @@ class StatesFetcher {
 
 //MARK:- Fetchable
 extension StatesFetcher: StatesFetchable {
+    
     func fetchAllStates() -> StatesPublisher {
         return stateItems(with: self.makeAllStateComponents(sortBy: .active, includeYesterday: true))
     }

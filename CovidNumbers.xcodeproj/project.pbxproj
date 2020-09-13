@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9473A174250D964B00AFF360 /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473A173250D964B00AFF360 /* CountriesViewModel.swift */; };
+		9473A175250D964B00AFF360 /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473A173250D964B00AFF360 /* CountriesViewModel.swift */; };
 		9499056824E0AB6A00B83A80 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9499056724E0AB6A00B83A80 /* Tests_macOS.swift */; };
 		9499056A24E0AB6A00B83A80 /* CovidNumbersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9499054124E0AB6800B83A80 /* CovidNumbersApp.swift */; };
 		9499056B24E0AB6A00B83A80 /* CovidNumbersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9499054124E0AB6800B83A80 /* CovidNumbersApp.swift */; };
@@ -63,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9473A173250D964B00AFF360 /* CountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
 		9499054124E0AB6800B83A80 /* CovidNumbersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidNumbersApp.swift; sourceTree = "<group>"; };
 		9499054224E0AB6800B83A80 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9499054324E0AB6A00B83A80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -240,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				94E7850E2507E9C500199164 /* StatesViewModel.swift */,
+				9473A173250D964B00AFF360 /* CountriesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -427,6 +431,7 @@
 				9499058C24E0B1E600B83A80 /* CountryModels.swift in Sources */,
 				FAD879C224E894AC007AD6E4 /* PublisherErrors.swift in Sources */,
 				FAD879BB24E8935F007AD6E4 /* StatesFetcher.swift in Sources */,
+				9473A174250D964B00AFF360 /* CountriesViewModel.swift in Sources */,
 				FAD879C824E8A5A9007AD6E4 /* EndPointBuilder.swift in Sources */,
 				9499056A24E0AB6A00B83A80 /* CovidNumbersApp.swift in Sources */,
 				9499057F24E0AE4C00B83A80 /* StatesView.swift in Sources */,
@@ -449,6 +454,7 @@
 				9499058D24E0B1E600B83A80 /* CountryModels.swift in Sources */,
 				FAD879C324E894AC007AD6E4 /* PublisherErrors.swift in Sources */,
 				FAD879BC24E8935F007AD6E4 /* StatesFetcher.swift in Sources */,
+				9473A175250D964B00AFF360 /* CountriesViewModel.swift in Sources */,
 				FAD879C924E8A5A9007AD6E4 /* EndPointBuilder.swift in Sources */,
 				9499056B24E0AB6A00B83A80 /* CovidNumbersApp.swift in Sources */,
 				9499058024E0AE4C00B83A80 /* StatesView.swift in Sources */,
