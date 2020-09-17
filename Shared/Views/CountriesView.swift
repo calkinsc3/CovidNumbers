@@ -31,6 +31,7 @@ struct CountryDetailCellView: View {
         VStack {
             Text(givenCountry.country)
             Text("Cases: \(givenCountry.cases)")
+            Text("Deaths: \(givenCountry.deaths)")
         }
     }
     
