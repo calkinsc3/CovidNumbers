@@ -54,6 +54,12 @@ private extension StatesView {
             }, label: {
                 Label("Deaths", systemImage: "waveform.path.ecg")
             })
+            Button(action: {
+                self.statesViewModel.stateResults = self.statesViewModel.stateResults.sorted(by: {$0.state > $1.state})
+            }, label: {
+                Label("Sort Desc", systemImage: "arrow.up.arrow.down.circle")
+            })
+            
         }
         .font(.headline)
     }
