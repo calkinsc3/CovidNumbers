@@ -74,12 +74,12 @@ struct StateDetailCellView: View {
         VStack(alignment: .leading) {
             HStack {
                 Text(givenState.state)
-                    .font(.headline)
-                Text("Cases: \(givenState.cases)")
+                    .font(.title)
+                Text("Cases: \(givenState.cases.formattedForDisplay())")
             }
             HStack {
-                Text("Active: \(givenState.active)")
-                Text("Deaths: \(givenState.deaths)")
+                Text("Active: \(givenState.active.formattedForDisplay())")
+                Text("Deaths: \(givenState.deaths.formattedForDisplay())")
             }
         }
         

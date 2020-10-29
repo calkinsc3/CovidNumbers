@@ -30,7 +30,7 @@ extension StatesFetcher: StatesFetchable {
     }
     
     //MARK:- Network Adaptor
-    private func stateItems<T>(with components:URLComponents) -> AnyPublisher<T, PublisherError> where T:Decodable {
+    private func stateItems<T:Decodable>(with components:URLComponents) -> AnyPublisher<T, PublisherError> {
         
         guard let url = components.url else {
             return Fail(error: PublisherError.network).eraseToAnyPublisher()
