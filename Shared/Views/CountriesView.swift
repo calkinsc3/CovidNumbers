@@ -54,6 +54,11 @@ private extension CountriesView {
             }, label: {
                 Label("Sort Desc", systemImage: "arrow.up.arrow.down.circle")
             })
+            Button(action: {
+                self.countriesViewModel.countriesResults = self.countriesViewModel.countriesResults.sorted(by: {$0.population > $1.population})
+            }, label: {
+                Label("Sort Population", systemImage: "person.3")
+            })
             
         }
         .font(.headline)
@@ -65,17 +70,26 @@ private extension CountriesView {
 struct CountryDetailCellView: View {
     
     let givenCountry: CountryDatum
+    @StateObject var flagQuery = FlagQuery()
     
     var body: some View {
-        VStack(alignment: .center) {
-            Text(givenCountry.country)
-                .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-            HStack {
+        HStack(alignment: .top) {
+            Image(uiImage: self.flagQuery.flag!) //TODO:- don't like the force unwrap
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 63, height: 33, alignment: .trailing)
+                .padding()
+            VStack(alignment: .leading) {
+                Text(givenCountry.country)
+                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 Text("Cases: \(givenCountry.cases.formattedForDisplay())")
                 Text("Deaths: \(givenCountry.deaths.formattedForDisplay())")
+                Text("Population: \(givenCountry.population.formattedForDisplay())")
             }
-            Text("Population: \(givenCountry.population.formattedForDisplay())")
         }
+        .onAppear(perform: { //TODO:- this is silly
+            self.flagQuery.getFlag(flagImageURL: self.givenCountry.countryInfo.flag)
+        })
     }
     
 }

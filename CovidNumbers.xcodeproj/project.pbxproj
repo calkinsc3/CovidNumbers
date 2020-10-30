@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9452D612254C25B300A2199E /* FlagQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9452D611254C25B300A2199E /* FlagQuery.swift */; };
+		9452D613254C25B300A2199E /* FlagQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9452D611254C25B300A2199E /* FlagQuery.swift */; };
 		9473A174250D964B00AFF360 /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473A173250D964B00AFF360 /* CountriesViewModel.swift */; };
 		9473A175250D964B00AFF360 /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9473A173250D964B00AFF360 /* CountriesViewModel.swift */; };
 		9499056824E0AB6A00B83A80 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9499056724E0AB6A00B83A80 /* Tests_macOS.swift */; };
@@ -65,6 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9452D611254C25B300A2199E /* FlagQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagQuery.swift; sourceTree = "<group>"; };
 		9473A173250D964B00AFF360 /* CountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
 		9499054124E0AB6800B83A80 /* CovidNumbersApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidNumbersApp.swift; sourceTree = "<group>"; };
 		9499054224E0AB6800B83A80 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -218,6 +221,7 @@
 			children = (
 				9499058824E0B1D700B83A80 /* StateModels.swift */,
 				9499058B24E0B1E600B83A80 /* CountryModels.swift */,
+				9452D611254C25B300A2199E /* FlagQuery.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -421,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94E7850F2507E9C500199164 /* StatesViewModel.swift in Sources */,
+				9452D612254C25B300A2199E /* FlagQuery.swift in Sources */,
 				94DC06972507F21700E7E9C7 /* Logs.swift in Sources */,
 				FAD879B824E8930F007AD6E4 /* Fetchable.swift in Sources */,
 				9499056C24E0AB6A00B83A80 /* ContentView.swift in Sources */,
@@ -444,6 +449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				94E785102507E9C500199164 /* StatesViewModel.swift in Sources */,
+				9452D613254C25B300A2199E /* FlagQuery.swift in Sources */,
 				94DC06982507F21700E7E9C7 /* Logs.swift in Sources */,
 				FAD879B924E8930F007AD6E4 /* Fetchable.swift in Sources */,
 				9499056D24E0AB6A00B83A80 /* ContentView.swift in Sources */,

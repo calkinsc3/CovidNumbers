@@ -30,7 +30,7 @@ extension CountryFetcher: CountriesFetchable {
     }
     
     //MARK:- Network Adaptor - TODO: centralize this function
-    private func countryItems<T>(with components:URLComponents) -> AnyPublisher<T, PublisherError> where T:Decodable {
+    private func countryItems<T:Decodable>(with components:URLComponents) -> AnyPublisher<T, PublisherError> {
         
         guard let url = components.url else {
             return Fail(error: PublisherError.network).eraseToAnyPublisher()
