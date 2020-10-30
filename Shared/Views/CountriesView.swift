@@ -77,11 +77,12 @@ struct CountryDetailCellView: View {
             Image(uiImage: self.flagQuery.flag!) //TODO:- don't like the force unwrap
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 63, height: 33, alignment: .trailing)
+                .frame(width: 65, height: 33, alignment: .trailing)
+                .shadow(radius: 10.0)
                 .padding()
             VStack(alignment: .leading) {
                 Text(givenCountry.country)
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                    .font(.title)
                 Text("Cases: \(givenCountry.cases.formattedForDisplay())")
                 Text("Deaths: \(givenCountry.deaths.formattedForDisplay())")
                 Text("Population: \(givenCountry.population.formattedForDisplay())")
