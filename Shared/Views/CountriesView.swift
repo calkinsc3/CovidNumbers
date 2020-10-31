@@ -76,7 +76,7 @@ struct CountryDetailCellView: View {
         HStack(alignment: .top) {
             Image(uiImage: self.flagQuery.flag!) //TODO:- don't like the force unwrap
                 .resizable()
-                .aspectRatio(contentMode: .fit)
+                .aspectRatio(contentMode: .fill)
                 .frame(width: 65, height: 33, alignment: .trailing)
                 .shadow(radius: 10.0)
                 .padding()
