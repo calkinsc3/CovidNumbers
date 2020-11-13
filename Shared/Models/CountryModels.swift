@@ -6,7 +6,9 @@
 //
 
 import Foundation
+#if !os(macOS)
 import UIKit
+#endif
 
 //MARK:- CountryData
 typealias CountryData = [CountryDatum]

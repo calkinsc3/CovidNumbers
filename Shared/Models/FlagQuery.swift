@@ -6,7 +6,9 @@
 //
 
 import Combine
+#if !os(macOS)
 import UIKit
+#endif
 import os
 
 final class FlagQuery: ObservableObject {
@@ -15,13 +17,15 @@ final class FlagQuery: ObservableObject {
     
     var subscriptions = Set<AnyCancellable>()
     
+    private let session: URLSession
+    
     init() {
-        
+        self.session = URLSession.shared
     }
     
     func getFlag(flagImageURL url: URL) {
         
-        let flagPublisher = URLSession.shared.dataTaskPublisher(for: url)
+        let flagPublisher = self.session.dataTaskPublisher(for: url)
             .map(\.data)
             .compactMap({ UIImage(data: $0)})
             .mapError {$0 as Error}

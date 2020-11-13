@@ -33,6 +33,8 @@
 		9499059424E0B5E100B83A80 /* Countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 9499059324E0B5E100B83A80 /* Countries.json */; };
 		94DC06972507F21700E7E9C7 /* Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC06962507F21600E7E9C7 /* Logs.swift */; };
 		94DC06982507F21700E7E9C7 /* Logs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DC06962507F21600E7E9C7 /* Logs.swift */; };
+		94E406B7255023E500689733 /* WorldTotals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E406B6255023E500689733 /* WorldTotals.swift */; };
+		94E406B8255023E500689733 /* WorldTotals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E406B6255023E500689733 /* WorldTotals.swift */; };
 		94E7850F2507E9C500199164 /* StatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E7850E2507E9C500199164 /* StatesViewModel.swift */; };
 		94E785102507E9C500199164 /* StatesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E7850E2507E9C500199164 /* StatesViewModel.swift */; };
 		FAD879B824E8930F007AD6E4 /* Fetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD879B724E8930F007AD6E4 /* Fetchable.swift */; };
@@ -91,6 +93,7 @@
 		9499059124E0B5AD00B83A80 /* States.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = States.json; sourceTree = "<group>"; };
 		9499059324E0B5E100B83A80 /* Countries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Countries.json; sourceTree = "<group>"; };
 		94DC06962507F21600E7E9C7 /* Logs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logs.swift; sourceTree = "<group>"; };
+		94E406B6255023E500689733 /* WorldTotals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldTotals.swift; sourceTree = "<group>"; };
 		94E7850E2507E9C500199164 /* StatesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatesViewModel.swift; sourceTree = "<group>"; };
 		FAD879B724E8930F007AD6E4 /* Fetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetchable.swift; sourceTree = "<group>"; };
 		FAD879BA24E8935F007AD6E4 /* StatesFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatesFetcher.swift; sourceTree = "<group>"; };
@@ -222,6 +225,7 @@
 				9499058824E0B1D700B83A80 /* StateModels.swift */,
 				9499058B24E0B1E600B83A80 /* CountryModels.swift */,
 				9452D611254C25B300A2199E /* FlagQuery.swift */,
+				94E406B6255023E500689733 /* WorldTotals.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -345,7 +349,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1210;
 				TargetAttributes = {
 					9499054724E0AB6A00B83A80 = {
 						CreatedOnToolsVersion = 12.0;
@@ -429,6 +433,7 @@
 				94DC06972507F21700E7E9C7 /* Logs.swift in Sources */,
 				FAD879B824E8930F007AD6E4 /* Fetchable.swift in Sources */,
 				9499056C24E0AB6A00B83A80 /* ContentView.swift in Sources */,
+				94E406B7255023E500689733 /* WorldTotals.swift in Sources */,
 				FAD879BE24E8936E007AD6E4 /* CountryFetcher.swift in Sources */,
 				9499058924E0B1D700B83A80 /* StateModels.swift in Sources */,
 				FAD879C524E89C75007AD6E4 /* Parsing.swift in Sources */,
@@ -453,6 +458,7 @@
 				94DC06982507F21700E7E9C7 /* Logs.swift in Sources */,
 				FAD879B924E8930F007AD6E4 /* Fetchable.swift in Sources */,
 				9499056D24E0AB6A00B83A80 /* ContentView.swift in Sources */,
+				94E406B8255023E500689733 /* WorldTotals.swift in Sources */,
 				FAD879BF24E8936E007AD6E4 /* CountryFetcher.swift in Sources */,
 				9499058A24E0B1D700B83A80 /* StateModels.swift in Sources */,
 				FAD879C624E89C75007AD6E4 /* Parsing.swift in Sources */,
@@ -663,6 +669,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = GAW47D4MAE;
@@ -687,6 +694,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = GAW47D4MAE;
