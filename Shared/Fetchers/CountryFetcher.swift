@@ -33,15 +33,38 @@ extension CountryFetcher: CountriesFetchable {
     private func countryItems<T:Decodable>(with components:URLComponents) -> AnyPublisher<T, PublisherError> {
         
         guard let url = components.url else {
-            return Fail(error: PublisherError.network).eraseToAnyPublisher()
+            return Fail(error: PublisherError.network(description: "Unable to get url")).eraseToAnyPublisher()
         }
         
         return session.dataTaskPublisher(for: url)
+            .tryMap({ (data, response) -> Data in
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    throw PublisherError.unknown
+                }
+                if httpResponse.statusCode == 401 {
+                    throw PublisherError.network(description: "Unauthorized")
+                }
+                if httpResponse.statusCode == 403 {
+                    throw PublisherError.network(description: "Resource forbiden")
+                }
+                if httpResponse.statusCode == 404 {
+                    throw PublisherError.network(description: "Resouces not found")
+                }
+                if (500..<600) ~= httpResponse.statusCode {
+                    throw PublisherError.network(description: "server error")
+                }
+                return data
+            })
             .mapError { error in
                 PublisherError(error)
             }
             .flatMap { returnedPair in
-                decode(returnedPair.data)
+                return Just(returnedPair)
+                    .decode(type: T.self, decoder: JSONDecoder())
+                    .mapError { error in
+                        PublisherError.init(error)
+                    }
+                    .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }

@@ -72,19 +72,14 @@ struct StateDetailCellView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Text(givenState.state)
-                    .font(.title)
-                Text("Cases: \(givenState.cases.formattedForDisplay())")
-            }
-            HStack {
-                Text("Active: \(givenState.active.formattedForDisplay())")
-                Text("Deaths: \(givenState.deaths.formattedForDisplay())")
-            }
+            Text(givenState.state)
+                .font(.largeTitle)
+            
+            Text("Cases: \(givenState.cases.formattedForDisplay())")
+            Text("Active: \(givenState.active.formattedForDisplay())")
+            Text("Deaths: \(givenState.deaths.formattedForDisplay())")
         }
-        
     }
-    
 }
 
 struct StateDetailView: View {
@@ -93,20 +88,32 @@ struct StateDetailView: View {
     
     var body: some View {
         VStack {
-            Text(givenState.state)
             Text("Cases: \(givenState.cases)")
             Text("Active: \(givenState.active)")
             Text("Deaths: \(givenState.deaths)")
+            Divider()
+            Text("Per Million Numbers")
+                .font(.title2)
+            Text("Tests: \(givenState.testsPerOneMillion)")
+            Text("Cases: \(givenState.casesPerOneMillion)")
+            Text("Deaths: \(givenState.deathsPerOneMillion)")
+
+            Text("State Population: \(givenState.population)")
         }
+        .navigationTitle(givenState.state)
     }
 }
 
 struct StatesView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            StatesView()
             StateDetailCellView(givenState: StateDatum.placeholder)
+                .previewDevice(PreviewDevice(rawValue: "iPad Air 4"))
+                .previewLayout(.fixed(width: 1024, height: 768))
+            StateDetailView(givenState: StateDatum.placeholder)
+                .previewDevice(PreviewDevice(rawValue: "iPad Air 4"))
+                .previewLayout(.fixed(width: 1024, height: 768))
+            
         }
-        
     }
 }

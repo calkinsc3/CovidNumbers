@@ -33,7 +33,7 @@ extension StatesFetcher: StatesFetchable {
     private func stateItems<T:Decodable>(with components:URLComponents) -> AnyPublisher<T, PublisherError> {
         
         guard let url = components.url else {
-            return Fail(error: PublisherError.network).eraseToAnyPublisher()
+            return Fail(error: PublisherError.network(description: "Unable to get state URL")).eraseToAnyPublisher()
         }
         
         return session.dataTaskPublisher(for: url)
