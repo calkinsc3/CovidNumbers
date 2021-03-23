@@ -18,7 +18,7 @@ class StatesFetcher {
     }
 }
 
-//MARK:- Fetchable
+//MARK:- Fetchablex
 extension StatesFetcher: StatesFetchable {
     
     func fetchAllStates() -> StatesPublisher {

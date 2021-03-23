@@ -58,11 +58,11 @@ extension CountryFetcher: CountriesFetchable {
             .mapError { error in
                 PublisherError(error)
             }
-            .flatMap { returnedPair in
-                return Just(returnedPair)
+            .flatMap { data in
+                return Just(data)
                     .decode(type: T.self, decoder: JSONDecoder())
                     .mapError { error in
-                        PublisherError.init(error)
+                        PublisherError.parsing(description: error.localizedDescription)
                     }
                     .eraseToAnyPublisher()
             }
