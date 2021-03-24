@@ -41,6 +41,9 @@ extension CountryFetcher: CountriesFetchable {
                 guard let httpResponse = response as? HTTPURLResponse else {
                     throw PublisherError.unknown
                 }
+                if httpResponse.statusCode == 400 {
+                    throw PublisherError.network(description: "Bad Request")
+                }
                 if httpResponse.statusCode == 401 {
                     throw PublisherError.network(description: "Unauthorized")
                 }
@@ -49,6 +52,9 @@ extension CountryFetcher: CountriesFetchable {
                 }
                 if httpResponse.statusCode == 404 {
                     throw PublisherError.network(description: "Resouces not found")
+                }
+                if (405..<500 ~= httpResponse.statusCode) {
+                    throw PublisherError.network(description: "client error")
                 }
                 if (500..<600) ~= httpResponse.statusCode {
                     throw PublisherError.network(description: "server error")
@@ -64,7 +70,7 @@ extension CountryFetcher: CountriesFetchable {
                     .mapError { error in
                         PublisherError.parsing(description: error.localizedDescription)
                     }
-                    .eraseToAnyPublisher()
+                    //.eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }
