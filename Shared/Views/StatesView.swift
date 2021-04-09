@@ -16,6 +16,18 @@ struct StatesView: View {
     var body: some View {
         NavigationView {
             VStack {
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                    TextField("Search", text: self.$statesViewModel.stateSearch) { (true) in
+                        //do something
+                    } onCommit: {
+                        self.statesViewModel.clearSearch()
+                    }
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(UIKeyboardType.alphabet)
+                }
+                .padding()
+                
                 Divider()
                 
                 List(self.statesViewModel.stateResults) { state in
@@ -97,7 +109,7 @@ struct StateDetailView: View {
             Text("Tests: \(givenState.testsPerOneMillion)")
             Text("Cases: \(givenState.casesPerOneMillion)")
             Text("Deaths: \(givenState.deathsPerOneMillion)")
-
+            
             Text("State Population: \(givenState.population)")
         }
         .navigationTitle(givenState.state)
@@ -107,12 +119,9 @@ struct StateDetailView: View {
 struct StatesView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
+            StatesView()
             StateDetailCellView(givenState: StateDatum.placeholder)
-                .previewDevice(PreviewDevice(rawValue: "iPad Air 4"))
-                .previewLayout(.fixed(width: 1024, height: 768))
             StateDetailView(givenState: StateDatum.placeholder)
-                .previewDevice(PreviewDevice(rawValue: "iPad Air 4"))
-                .previewLayout(.fixed(width: 1024, height: 768))
             
         }
     }
