@@ -17,14 +17,15 @@ struct StatesView: View {
         NavigationView {
             VStack {
                 HStack {
-                    Image(systemName: "magnifyingglass")
                     TextField("Search", text: self.$statesViewModel.stateSearch) { (true) in
                         //do something
                     } onCommit: {
                         self.statesViewModel.clearSearch()
                     }
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .keyboardType(UIKeyboardType.alphabet)
+                    
+                    Image(systemName: "magnifyingglass")
+                    
                 }
                 .padding()
                 

@@ -12,7 +12,11 @@ import os
 class StatesViewModel: ObservableObject {
     
     @Published var stateResults: StateData = [StateDatum.placeholder, StateDatum.placeholder, StateDatum.placeholder]
-    @Published var stateSearch: String = ""
+    @Published var stateSearch: String = "" {
+        didSet {
+            self.stateResults = self.stateResults.filter({$0.state.contains(stateSearch)})
+        }
+    }
     
     private let stateDataFetcher = StatesFetcher()
     private var disposables = Set<AnyCancellable>()
@@ -21,13 +25,13 @@ class StatesViewModel: ObservableObject {
         
         self.fetchStateData()
         
-        $stateSearch
-            .dropFirst(2)
-            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
-            .sink { (searchFor) in
-                self.stateResults = self.stateResults.filter({$0.state.contains(searchFor)})
-            }
-            .store(in: &disposables)
+//        $stateSearch
+//            .dropFirst(2)
+//            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
+//            .sink { (searchFor) in
+//                self.stateResults = self.stateResults.filter({$0.state.contains(searchFor)})
+//            }
+//            .store(in: &disposables)
     }
     
     func clearSearch() {
