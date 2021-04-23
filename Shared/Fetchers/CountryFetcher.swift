@@ -70,7 +70,6 @@ extension CountryFetcher: CountriesFetchable {
                     .mapError { error in
                         PublisherError.parsing(description: error.localizedDescription)
                     }
-                    //.eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }

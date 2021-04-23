@@ -19,6 +19,7 @@ struct DISEASESH_API {
     static let basePath = "\(version)/covid-19"
     
     static let statesBasePath = "/\(basePath)/states"
+    static let stateVaccineBasePath = "/\(basePath)/vaccine/coverage/states/"
     static let allBasePath = "/\(basePath)/all"
     static let countriesPath = "/\(basePath)/countries"
     

@@ -21,3 +21,11 @@ public struct StateDatum: Codable, Identifiable, Equatable, Hashable {
     let todayDeaths, recovered, active, casesPerOneMillion: Int
     let deathsPerOneMillion, tests, testsPerOneMillion, population: Int
 }
+
+// MARK: - StateVaccines
+struct StateVaccines: Decodable, Identifiable, Equatable, Hashable {
+    public let id = UUID()
+    
+    var state: String
+    var timeline: [String: Int]
+}

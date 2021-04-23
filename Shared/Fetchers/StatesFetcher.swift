@@ -29,6 +29,10 @@ extension StatesFetcher: StatesFetchable {
         return stateItems(with: self.makeSpecificStateComponents(givenStates: givenStates))
     }
     
+    func fetchVaccine(forState state: String) -> StateVaccinePublisher {
+        return stateItems(with: self.makeSpecificStateVaccineComponents(givenState: state))
+    }
+    
     //MARK:- Network Adaptor
     private func stateItems<T:Decodable>(with components:URLComponents) -> AnyPublisher<T, PublisherError> {
         
@@ -70,6 +74,18 @@ private extension StatesFetcher {
         components.scheme = DISEASESH_API.schema
         components.host = DISEASESH_API.host
         components.path = DISEASESH_API.statesBasePath + "/\(states.joined(separator: ","))"
+        
+        return components
+    }
+    
+    func makeSpecificStateVaccineComponents(givenState state: String, numberOfDay days: Int = 10) -> URLComponents {
+        
+        var components = URLComponents()
+        
+        components.scheme = DISEASESH_API.schema
+        components.host = DISEASESH_API.host
+        components.path = DISEASESH_API.stateVaccineBasePath + "\(state)"
+        components.queryItems = [URLQueryItem(name: "lastdays", value: "\(days)")]
         
         return components
     }

@@ -97,6 +97,8 @@ struct StateDetailCellView: View {
 
 struct StateDetailView: View {
     
+    @StateObject var stateVaccineViewModel = StateVaccineViewModel()
+    
     var givenState: StateDatum
     
     var body: some View {
@@ -104,16 +106,27 @@ struct StateDetailView: View {
             Text("Cases: \(givenState.cases)")
             Text("Active: \(givenState.active)")
             Text("Deaths: \(givenState.deaths)")
-            Divider()
-            Text("Per Million Numbers")
-                .font(.title2)
-            Text("Tests: \(givenState.testsPerOneMillion)")
-            Text("Cases: \(givenState.casesPerOneMillion)")
-            Text("Deaths: \(givenState.deathsPerOneMillion)")
             
+            Divider()
             Text("State Population: \(givenState.population)")
+            
+            VStack {
+                Divider()
+                Text("Vaccinated")
+                    .font(.title)
+                List(self.stateVaccineViewModel.numberVaccinated) { dateNumbers in
+                    HStack {
+                        Text(dateNumbers.date)
+                        Text(": \(dateNumbers.vaccinated.formattedForDisplay())")
+                    }
+                }
+            }
+            
         }
         .navigationTitle(givenState.state)
+        .onAppear(perform: {
+            self.stateVaccineViewModel.fetchStateVaccines(givenState: givenState.state)
+        })
     }
 }
 

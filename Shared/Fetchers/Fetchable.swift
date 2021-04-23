@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 typealias StatesPublisher = AnyPublisher<StateData, PublisherError>
+typealias StateVaccinePublisher = AnyPublisher<StateVaccines, PublisherError>
 typealias CountryPublisher = AnyPublisher<CountryData, PublisherError>
 typealias TotalsPublisher = AnyPublisher<WorldTotals, PublisherError>
 

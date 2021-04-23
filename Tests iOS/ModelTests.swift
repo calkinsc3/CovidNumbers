@@ -7,9 +7,8 @@
 
 import XCTest
 import Foundation
-
+//TODO:- unit test are not working
 @testable import CovidNumbers
-
 
 class ModelTests: XCTestCase {
     
@@ -43,6 +42,24 @@ class ModelTests: XCTestCase {
     }
     
     func testCountryModels() throws {
+        
+    }
+    
+    func testStateVaccineModles() throws {
+        
+        let stateVaccineData = getMockData(forResource: "StateVaccine")
+        
+        //decode the data
+        if let givenStateVaccineData = stateVaccineData {
+            do {
+                let stateVaccineModel = try jsonDecoder.decode(StateVaccines.self, from: givenStateVaccineData)
+                XCTAssertTrue(stateVaccineModel.timeline.count == 7, "State vaccine model should be time should be a count of 7")
+                
+            } catch {
+                XCTFail("Failed to decode State Vaccine data: \(error)")
+            }
+            
+        }
         
     }
     

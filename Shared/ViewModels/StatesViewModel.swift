@@ -62,3 +62,54 @@ class StatesViewModel: ObservableObject {
     }
     
 }
+
+//MARK:- StateVaccinesViewModel
+class StateVaccineViewModel: ObservableObject {
+    
+    @Published var numberVaccinated: [NumberVaccinate] = []
+    
+    private let stateDataFetcher = StatesFetcher()
+    private var disposables = Set<AnyCancellable>()
+       
+    func fetchStateVaccines(givenState state: String) {
+        
+        stateDataFetcher.fetchVaccine(forState: state)
+            .receive(on: DispatchQueue.main)
+            .sink { (completion) in
+                switch completion {
+                case .failure(let publisherError) :
+                    switch publisherError as PublisherError {
+                        case .network: os_log("Network error in fetchVaccinationData.", log: Log.networkLogger, type: .error)
+                        case .parsing: os_log("Parsing error in fetchVaccinationData.", log: Log.decodingLogger, type: .error)
+                        case .unknown: os_log("Unknown error in fetchVaccinationData.", log: Log.unknownErrorLogger, type: .error)
+                    }
+                case .finished:
+                    break
+                }
+                
+            } receiveValue: { (stateVaccines) in
+                
+                let mappedNumberOfVaccines = stateVaccines.timeline.map({NumberVaccinate(date: $0.key, vaccinated: $0.value)})
+                let sortedVaccines = mappedNumberOfVaccines.sorted { (firstVaccinated, secondVaccinated) -> Bool in
+                    guard let realDate1 = firstVaccinated.realDate, let realDate2 = secondVaccinated.realDate else {
+                        return false
+                    }
+                    return realDate1 > realDate2
+                }
+                
+                self.numberVaccinated = sortedVaccines
+            }
+            .store(in: &disposables)
+    }
+}
+
+struct NumberVaccinate: Identifiable {
+    var id = UUID()
+    var date: String
+    var realDate: Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        return dateFormatter.date(from: self.date)
+    }
+    var vaccinated: Int
+}
