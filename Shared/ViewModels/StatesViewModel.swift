@@ -25,13 +25,13 @@ class StatesViewModel: ObservableObject {
         
         self.fetchStateData()
         
-//        $stateSearch
-//            .dropFirst(2)
-//            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
-//            .sink { (searchFor) in
-//                self.stateResults = self.stateResults.filter({$0.state.contains(searchFor)})
-//            }
-//            .store(in: &disposables)
+        //        $stateSearch
+        //            .dropFirst(2)
+        //            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
+        //            .sink { (searchFor) in
+        //                self.stateResults = self.stateResults.filter({$0.state.contains(searchFor)})
+        //            }
+        //            .store(in: &disposables)
     }
     
     func clearSearch() {
@@ -47,9 +47,9 @@ class StatesViewModel: ObservableObject {
                 switch completion {
                 case .failure(let publisherError) :
                     switch publisherError as PublisherError {
-                        case .network: os_log("Network error in fetchAllStates.", log: Log.networkLogger, type: .error)
-                        case .parsing: os_log("Parsing error in fetchAllStates.", log: Log.decodingLogger, type: .error)
-                        case .unknown: os_log("Unknown error in fetchAllStates.", log: Log.unknownErrorLogger, type: .error)
+                    case .network: os_log("Network error in fetchAllStates.", log: Log.networkLogger, type: .error)
+                    case .parsing: os_log("Parsing error in fetchAllStates.", log: Log.decodingLogger, type: .error)
+                    case .unknown: os_log("Unknown error in fetchAllStates.", log: Log.unknownErrorLogger, type: .error)
                     }
                 case .finished:
                     break
@@ -70,7 +70,7 @@ class StateVaccineViewModel: ObservableObject {
     
     private let stateDataFetcher = StatesFetcher()
     private var disposables = Set<AnyCancellable>()
-       
+    
     func fetchStateVaccines(givenState state: String) {
         
         stateDataFetcher.fetchVaccine(forState: state)
@@ -79,9 +79,9 @@ class StateVaccineViewModel: ObservableObject {
                 switch completion {
                 case .failure(let publisherError) :
                     switch publisherError as PublisherError {
-                        case .network: os_log("Network error in fetchVaccinationData.", log: Log.networkLogger, type: .error)
-                        case .parsing: os_log("Parsing error in fetchVaccinationData.", log: Log.decodingLogger, type: .error)
-                        case .unknown: os_log("Unknown error in fetchVaccinationData.", log: Log.unknownErrorLogger, type: .error)
+                    case .network: os_log("Network error in fetchVaccinationData.", log: Log.networkLogger, type: .error)
+                    case .parsing: os_log("Parsing error in fetchVaccinationData.", log: Log.decodingLogger, type: .error)
+                    case .unknown: os_log("Unknown error in fetchVaccinationData.", log: Log.unknownErrorLogger, type: .error)
                     }
                 case .finished:
                     break
@@ -89,15 +89,17 @@ class StateVaccineViewModel: ObservableObject {
                 
             } receiveValue: { (stateVaccines) in
                 
-                let mappedNumberOfVaccines = stateVaccines.timeline.map({NumberVaccinate(date: $0.key, vaccinated: $0.value)})
-                let sortedVaccines = mappedNumberOfVaccines.sorted { (firstVaccinated, secondVaccinated) -> Bool in
-                    guard let realDate1 = firstVaccinated.realDate, let realDate2 = secondVaccinated.realDate else {
-                        return false
+                let mappedNumberOfVaccines = stateVaccines.timeline
+                    .map({NumberVaccinate(date: $0.key, vaccinated: $0.value)})
+                    .sorted { (firstVaccinated, secondVaccinated) -> Bool in
+                        guard let realDate1 = firstVaccinated.realDate,
+                              let realDate2 = secondVaccinated.realDate else {
+                            return false
+                        }
+                        return realDate1 > realDate2
                     }
-                    return realDate1 > realDate2
-                }
                 
-                self.numberVaccinated = sortedVaccines
+                self.numberVaccinated = mappedNumberOfVaccines
             }
             .store(in: &disposables)
     }
