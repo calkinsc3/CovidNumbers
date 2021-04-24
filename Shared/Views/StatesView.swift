@@ -123,7 +123,9 @@ struct StateDetailView: View {
                     HStack {
                         Text(dateNumbers.date)
                         Text(": \(dateNumbers.vaccinated.formattedForDisplay())")
+                        Text(": \(dateNumbers.percentageOfPopulationVaccinated(statePopulation: givenState.population))")
                     }
+                    .font(.body)
                 }
             }
             

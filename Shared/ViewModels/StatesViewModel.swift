@@ -67,6 +67,7 @@ class StatesViewModel: ObservableObject {
 class StateVaccineViewModel: ObservableObject {
     
     @Published var numberVaccinated: [NumberVaccinate] = []
+    @Published var percentOfPopPerDay: [Double] = []
     
     private let stateDataFetcher = StatesFetcher()
     private var disposables = Set<AnyCancellable>()
@@ -114,4 +115,22 @@ struct NumberVaccinate: Identifiable {
         return dateFormatter.date(from: self.date)
     }
     var vaccinated: Int
+    
+    func percentageOfPopulationVaccinated(statePopulation population: Int) -> String {
+        
+        guard population > 0 else {
+            return "0.00%"
+        }
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .percent
+        numberFormatter.minimumIntegerDigits = 1
+        numberFormatter.maximumIntegerDigits = 2
+        numberFormatter.maximumFractionDigits = 2
+        
+        let vaccinatedPercent = (Double(vaccinated) / Double(population))
+        os_log("percentageOfPopulationVaccinated: \(vaccinatedPercent)")
+        
+        return numberFormatter.string(from: NSNumber(value: vaccinatedPercent)) ?? "0.00%"
+    }
 }
