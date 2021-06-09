@@ -9,39 +9,36 @@ import SwiftUI
 
 struct StatesView: View {
     
+    @Environment(\.isSearching) var isSearching
+    
     @StateObject var statesViewModel = StatesViewModel()
     
     @State private var showingSortMenu = false
+    @State private var testSearch = ""
     
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    TextField("Search", text: self.$statesViewModel.stateSearch) { (true) in
-                        //do something
-                    } onCommit: {
-                        self.statesViewModel.clearSearch()
+                if self.isSearching {
+                    List(self.statesViewModel.searchStateResults) { state in
+                        NavigationLink(destination: StateDetailView(givenState: state)) {
+                            StateDetailCellView(givenState: state)
+                        }
                     }
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    
-                    Image(systemName: "magnifyingglass")
-                    
-                }
-                .padding()
-                
-                Divider()
-                
-                List(self.statesViewModel.stateResults) { state in
-                    NavigationLink(destination: StateDetailView(givenState: state)) {
-                        StateDetailCellView(givenState: state)
+                } else {
+                    List(self.statesViewModel.stateResults) { state in
+                        NavigationLink(destination: StateDetailView(givenState: state)) {
+                            StateDetailCellView(givenState: state)
+                        }
                     }
                 }
-                .toolbar(content: {
-                    ToolbarItem {
-                        self.sortButtonMenu
-                    }
-                })
             }
+            .toolbar(content: {
+                ToolbarItem {
+                    self.sortButtonMenu
+                }
+            })
+            .searchable(text: $statesViewModel.stateSearch)
             .navigationTitle("States")
         }
     }

@@ -12,9 +12,11 @@ import os
 class StatesViewModel: ObservableObject {
     
     @Published var stateResults: StateData = [StateDatum.placeholder, StateDatum.placeholder, StateDatum.placeholder]
+    @Published var searchStateResults: StateData = []
+    
     @Published var stateSearch: String = "" {
         didSet {
-            self.stateResults = self.stateResults.filter({$0.state.contains(stateSearch)})
+            self.searchStateResults = self.stateResults.filter({$0.state.contains(stateSearch)})
         }
     }
     
@@ -129,7 +131,7 @@ struct NumberVaccinate: Identifiable {
         numberFormatter.maximumFractionDigits = 2
         
         let vaccinatedPercent = (Double(vaccinated) / Double(population))
-        os_log("percentageOfPopulationVaccinated: \(vaccinatedPercent)")
+        // os_log("percentageOfPopulationVaccinated: \(vaccinatedPercent)")
         
         return numberFormatter.string(from: NSNumber(value: vaccinatedPercent)) ?? "0.00%"
     }
