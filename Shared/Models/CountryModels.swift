@@ -14,7 +14,7 @@ import UIKit
 typealias CountryData = [CountryDatum]
 
 //MARK: - CountryDatum
-struct CountryDatum: Codable, Identifiable, Equatable, Hashable {
+struct CountryDatum: Codable, Equatable, Identifiable, Hashable {
     let id = UUID()
     let updated: Int
     let country: String
@@ -39,7 +39,7 @@ struct CountryDatum: Codable, Identifiable, Equatable, Hashable {
 
 // MARK: - CountryInfo
 struct CountryInfo: Codable, Equatable, Hashable {
-    let _id: Int?
+    let _id: Int
     let iso2, iso3: String?
     let lat, long: Double
     let flag: URL
@@ -47,6 +47,11 @@ struct CountryInfo: Codable, Equatable, Hashable {
     static let `placeholder` = Self(_id: 4, iso2: "AF", iso3: "AFG", lat: 33, long: 65, flag: URL(string: "https://disease.sh/assets/img/flags/af.png")!)
     
 }
+
+//extension CountryDatum: Identifiable {
+//    //public var id: String { self.country }
+//    var id : String { UUID().uuidString }
+//}
 
 extension Int {
     func formattedForDisplay() -> String {
