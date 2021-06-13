@@ -10,6 +10,7 @@ import Foundation
 enum StatePublisherErrors: Error {
     case network(description: String)
     case decoding(description: String)
+    case urlError(description: String)
     case apiError(description: String)
 }
 
