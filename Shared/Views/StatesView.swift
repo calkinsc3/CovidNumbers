@@ -41,6 +41,9 @@ struct StatesView: View {
             .searchable(text: $statesViewModel.stateSearch)
             .navigationTitle("States")
         }
+        .task {
+            await self.statesViewModel.getStateData()
+        }
     }
 }
 

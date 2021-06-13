@@ -23,9 +23,10 @@ class StatesViewModel: ObservableObject {
     private let stateDataFetcher = StatesFetcher()
     private var disposables = Set<AnyCancellable>()
     
-    init() {
+    //init() async {
         
-        self.fetchStateData()
+        //self.fetchStateData()
+        //await self.getStateData()
         
         //        $stateSearch
         //            .dropFirst(2)
@@ -34,7 +35,7 @@ class StatesViewModel: ObservableObject {
         //                self.stateResults = self.stateResults.filter({$0.state.contains(searchFor)})
         //            }
         //            .store(in: &disposables)
-    }
+    //}
     
     func clearSearch() {
         //self.stateSearch = ""
@@ -61,6 +62,15 @@ class StatesViewModel: ObservableObject {
                 self.stateResults = stateModels.sorted(by: {$0.cases > $1.cases})
             }
             .store(in: &disposables)
+    }
+    
+    func getStateData() async {
+        do {
+            self.stateResults = try await stateDataFetcher.fectchStateData().sorted(by: {$0.cases > $1.cases})
+        } catch {
+            os_log("Network error in getStateData. error", log: Log.networkLogger, type: .error)
+        }
+        
     }
     
 }

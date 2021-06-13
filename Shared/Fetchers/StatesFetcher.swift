@@ -17,7 +17,7 @@ class StatesFetcher {
         self.session = URLSession.shared
     }
     
-    func fectchStateData<T:Decodable>() async throws -> T? {
+    func fectchStateData() async throws -> StateData {
         
         guard let url = self.makeAllStateComponents(sortBy: .active, includeYesterday: true).url else {
             throw StatePublisherErrors.urlError(description: "Could not create All States URL")
@@ -31,7 +31,7 @@ class StatesFetcher {
         
         do {
             let decoder = JSONDecoder()
-            return try decoder.decode(T.self, from: data)
+            return try decoder.decode(StateData.self, from: data)
         } catch let error {
             throw StatePublisherErrors.decoding(description: "Error decoding: \(error)")
         }
