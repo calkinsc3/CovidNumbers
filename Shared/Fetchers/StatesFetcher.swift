@@ -30,8 +30,7 @@ class StatesFetcher {
         }
         
         do {
-            let decoder = JSONDecoder()
-            return try decoder.decode(StateData.self, from: data)
+            return try JSONDecoder().decode(StateData.self, from: data)
         } catch let error {
             throw StatePublisherErrors.decoding(description: "Error decoding: \(error)")
         }
