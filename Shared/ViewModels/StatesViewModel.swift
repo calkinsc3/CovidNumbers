@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import os
 
+@MainActor
 class StatesViewModel: ObservableObject {
     
     @Published var stateResults: StateData = [StateDatum.placeholder, StateDatum.placeholder, StateDatum.placeholder]

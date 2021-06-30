@@ -17,24 +17,7 @@ class StatesFetcher {
         self.session = URLSession.shared
     }
     
-    func fectchStateData() async throws -> StateData {
-        
-        guard let url = self.makeAllStateComponents(sortBy: .active, includeYesterday: true).url else {
-            throw StatePublisherErrors.urlError(description: "Could not create All States URL")
-        }
-        
-        let (data, response) = try await self.session.data(from: url)
-        
-        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-            throw StatePublisherErrors.apiError(description: "Returned a non-200")
-        }
-        
-        do {
-            return try JSONDecoder().decode(StateData.self, from: data)
-        } catch let error {
-            throw StatePublisherErrors.decoding(description: "Error decoding: \(error)")
-        }
-    }
+    
 }
 
 //MARK:- Fetchablex
@@ -67,6 +50,25 @@ extension StatesFetcher: StatesFetchable {
                 decode(returnedPair.data)
             }
             .eraseToAnyPublisher()
+    }
+    
+    func fectchStateData() async throws -> StateData {
+        
+        guard let url = self.makeAllStateComponents(sortBy: .active, includeYesterday: true).url else {
+            throw StatePublisherErrors.urlError(description: "Could not create All States URL")
+        }
+        
+        let (data, response) = try await self.session.data(from: url)
+        
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw StatePublisherErrors.apiError(description: "Returned a non-200")
+        }
+        
+        do {
+            return try JSONDecoder().decode(StateData.self, from: data)
+        } catch let error {
+            throw StatePublisherErrors.decoding(description: "Error decoding: \(error)")
+        }
     }
 }
 
