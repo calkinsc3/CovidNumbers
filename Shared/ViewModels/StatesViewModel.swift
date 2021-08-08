@@ -14,6 +14,7 @@ class StatesViewModel: ObservableObject {
     
     @Published var stateResults: StateData = [StateDatum.placeholder, StateDatum.placeholder, StateDatum.placeholder]
     @Published var searchStateResults: StateData = []
+    @Published var pinnedStates: StateData = []
     
     @Published var stateSearch: String = "" {
         didSet {
@@ -76,7 +77,7 @@ class StatesViewModel: ObservableObject {
     
 }
 
-//MARK:- StateVaccinesViewModel
+//MARK: - StateVaccinesViewModel
 class StateVaccineViewModel: ObservableObject {
     
     @Published var numberVaccinated: [NumberVaccinate] = []

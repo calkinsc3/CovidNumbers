@@ -20,7 +20,7 @@ class StatesFetcher {
     
 }
 
-//MARK:- Fetchablex
+//MARK: - Fetchablex
 extension StatesFetcher: StatesFetchable {
     
     func fetchAllStates() -> StatesPublisher {
@@ -52,6 +52,7 @@ extension StatesFetcher: StatesFetchable {
             .eraseToAnyPublisher()
     }
     
+    //MARK: - async/await version
     func fectchStateData() async throws -> StateData {
         
         guard let url = self.makeAllStateComponents(sortBy: .active, includeYesterday: true).url else {

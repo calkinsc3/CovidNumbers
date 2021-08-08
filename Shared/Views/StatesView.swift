@@ -29,18 +29,26 @@ struct StatesView: View {
                     List(self.statesViewModel.stateResults) { state in
                         NavigationLink(destination: StateDetailView(givenState: state)) {
                             StateDetailCellView(givenState: state)
+                                .swipeActions {
+                                    Button  {
+                                        self.statesViewModel.pinnedStates.append(state)
+                                    } label: {
+                                        Label("Pinned", image: "pin")
+                                    }
+                                    .tint(.red)
+                                }
                         }
                     }
                 }
             }
-            .toolbar(content: {
-                ToolbarItem {
-                    self.sortButtonMenu
-                }
-            })
-            .searchable(text: $statesViewModel.stateSearch)
-            .navigationTitle("States")
         }
+        .toolbar(content: {
+            ToolbarItem {
+                self.sortButtonMenu
+            }
+        })
+        .searchable(text: $statesViewModel.stateSearch)
+        .navigationTitle("States")
         .task {
             await self.statesViewModel.getStateData()
         }
