@@ -72,7 +72,6 @@ class StatesViewModel: ObservableObject {
         } catch {
             os_log("Network error in getStateData. error", log: Log.networkLogger, type: .error)
         }
-        
     }
     
 }

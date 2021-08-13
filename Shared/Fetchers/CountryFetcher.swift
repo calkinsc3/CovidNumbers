@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import os
 
 //MARK:- CountryFetcher
 class CountryFetcher {
@@ -72,6 +73,28 @@ extension CountryFetcher: CountriesFetchable {
                     }
             }
             .eraseToAnyPublisher()
+    }
+    
+    //MARK:- asyc/await version
+    func fetchCountryData() async throws -> CountryData {
+        
+        guard let url = self.makeAllCountryComponents(sortBy: SortOptions.active, includedYesterday: true).url else {
+            throw CountryPublisherErrors.urlError(description: "Could not create Country URL.")
+        }
+        
+        let (data, response) = try await self.session.data(from: url)
+        
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw CountryPublisherErrors.apiError(description: "Returned a non-200")
+        }
+        
+        do {
+            return try JSONDecoder().decode(CountryData.self, from: data)
+        } catch let error {
+            print(error)
+            os_log("Decoding error in CountryFetcher: %@", log: Log.decodingLogger, type: .error, error.localizedDescription)
+            throw CountryPublisherErrors.decoding(description: "Error decoding: \(error)")
+        }
     }
     
 }

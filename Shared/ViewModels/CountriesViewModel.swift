@@ -17,7 +17,7 @@ class CountriesViewModel: ObservableObject {
     private var disposables = Set<AnyCancellable>()
     
     init() {
-        self.fetchCountriesData()
+        //self.fetchCountriesData()
     }
     
     private func fetchCountriesData() {
@@ -40,6 +40,14 @@ class CountriesViewModel: ObservableObject {
                 self.countriesResults = countriesModels.sorted(by: {$0.cases > $1.cases})
             }
             .store(in: &disposables)
+    }
+    
+    func getCountryData() async {
+        do {
+            self.countriesResults = try await countriesFetcher.fetchCountryData().sorted(by: {$0.cases > $1.cases})
+        } catch {
+            os_log("Network error in fetchCountryData. error", log: Log.networkLogger, type: .error)
+        }
     }
     
     

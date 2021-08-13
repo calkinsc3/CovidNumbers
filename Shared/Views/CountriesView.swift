@@ -26,6 +26,9 @@ struct CountriesView: View {
             }
             .navigationTitle("Counties")
         }
+        .task {
+            await self.countriesViewModel.getCountryData()
+        }
     }
 }
 
@@ -74,6 +77,9 @@ struct CountryDetailCellView: View {
     
     var body: some View {
         HStack(alignment: .top) {
+//            AsyncImage(url: self.givenCountry.countryInfo.flag)
+//                .shadow(radius: 10.0)
+//                .padding()
             Image(uiImage: self.flagQuery.flag!) //TODO:- don't like the force unwrap
                 .resizable()
                 .aspectRatio(contentMode: .fill)
@@ -88,9 +94,9 @@ struct CountryDetailCellView: View {
                 Text("Population: \(givenCountry.population.formattedForDisplay())")
             }
         }
-        .onAppear(perform: { //TODO:- this is silly
+        .task {
             self.flagQuery.getFlag(flagImageURL: self.givenCountry.countryInfo.flag)
-        })
+        }
     }
     
 }
