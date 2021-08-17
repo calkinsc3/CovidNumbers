@@ -16,62 +16,18 @@ class StatesViewModel: ObservableObject {
     @Published var searchStateResults: StateData = []
     @Published var pinnedStates: StateData = []
     
-    @Published var stateSearch: String = "" {
-        didSet {
-            self.searchStateResults = self.stateResults.filter({$0.state.contains(stateSearch)})
-        }
-    }
-    
-    private let stateDataFetcher = StatesFetcher()
-    private var disposables = Set<AnyCancellable>()
-    
-    //init() async {
-        
-        //self.fetchStateData()
-        //await self.getStateData()
-        
-        //        $stateSearch
-        //            .dropFirst(2)
-        //            .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
-        //            .sink { (searchFor) in
-        //                self.stateResults = self.stateResults.filter({$0.state.contains(searchFor)})
-        //            }
-        //            .store(in: &disposables)
-    //}
-    
-    func clearSearch() {
-        //self.stateSearch = ""
-        self.fetchStateData()
-    }
-    
-    private func fetchStateData() {
-        
-        stateDataFetcher.fetchAllStates()
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                switch completion {
-                case .failure(let publisherError) :
-                    switch publisherError as PublisherError {
-                    case .network: os_log("Network error in fetchAllStates.", log: Log.networkLogger, type: .error)
-                    case .parsing: os_log("Parsing error in fetchAllStates.", log: Log.decodingLogger, type: .error)
-                    case .unknown: os_log("Unknown error in fetchAllStates.", log: Log.unknownErrorLogger, type: .error)
-                    }
-                case .finished:
-                    break
-                }
-            } receiveValue: { [weak self] stateModels in
-                guard let self = self else { return }
-                self.stateResults = stateModels.sorted(by: {$0.cases > $1.cases})
-            }
-            .store(in: &disposables)
-    }
-    
     func getStateData() async {
+        let stateDataFetcher = StatesFetcher()
         do {
             self.stateResults = try await stateDataFetcher.fectchStateData().sorted(by: {$0.cases > $1.cases})
         } catch {
             os_log("Network error in getStateData. error", log: Log.networkLogger, type: .error)
         }
+    }
+    
+    //MARK:- UI Search
+    func searchForState(query: String) {
+        self.searchStateResults = self.stateResults.filter({$0.state.contains(query)})
     }
     
 }

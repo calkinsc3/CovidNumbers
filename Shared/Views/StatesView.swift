@@ -9,12 +9,14 @@ import SwiftUI
 
 struct StatesView: View {
     
-    @Environment(\.isSearching) var isSearching
+    @Environment(\.isSearching) private var isSearching : Bool
+    @Environment(\.dismissSearch) private var dismissStateSearch
     
     @StateObject var statesViewModel = StatesViewModel()
     
     @State private var showingSortMenu = false
     @State private var testSearch = ""
+    @State private var query = ""
     
     var body: some View {
         NavigationView {
@@ -47,12 +49,21 @@ struct StatesView: View {
                 self.sortButtonMenu
             }
         })
-        .searchable(text: $statesViewModel.stateSearch)
+        .searchable(text: $query, prompt: "Search State")
+        .onChange(of: query, perform: { newValue in
+            self.searchForState(query: newValue)
+        })
         .navigationTitle("States")
         .task {
             await self.statesViewModel.getStateData()
         }
     }
+    
+    //MARK:- UI Search
+    func searchForState(query: String) {
+        self.statesViewModel.searchStateResults = self.statesViewModel.stateResults.filter({$0.state.contains(query)})
+    }
+    
 }
 
 private extension StatesView {
