@@ -55,13 +55,17 @@ struct StatesView: View {
         })
         .navigationTitle("States")
         .task {
-            await self.statesViewModel.getStateData()
+            if self.statesViewModel.stateResults.count == 3 {
+                await self.statesViewModel.getStateData()
+            }
         }
     }
     
     //MARK:- UI Search
     func searchForState(query: String) {
-        self.statesViewModel.searchStateResults = self.statesViewModel.stateResults.filter({$0.state.contains(query)})
+        if self.isSearching {
+            self.statesViewModel.searchStateResults = self.statesViewModel.stateResults.filter({$0.state.contains(query)})
+        }
     }
     
 }
