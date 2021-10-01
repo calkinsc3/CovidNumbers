@@ -10,12 +10,14 @@ import Combine
 import os
 
 @MainActor
+/// ViewModel for States
 class StatesViewModel: ObservableObject {
     
     @Published var stateResults: StateData = [StateDatum.placeholder, StateDatum.placeholder, StateDatum.placeholder]
     @Published var searchStateResults: StateData = []
     @Published var pinnedStates: StateData = []
     
+    /// Gathers State Data using async
     func getStateData() async {
         let stateDataFetcher = StatesFetcher()
         do {
@@ -25,7 +27,9 @@ class StatesViewModel: ObservableObject {
         }
     }
     
-    //MARK:- UI Search
+    
+    /// Searches for a given state
+    /// - Parameter query: State abbreviation
     func searchForState(query: String) {
         self.searchStateResults = self.stateResults.filter({$0.state.contains(query)})
     }
