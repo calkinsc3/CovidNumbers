@@ -44,7 +44,11 @@ class CountriesViewModel: ObservableObject {
     
     func getCountryData() async {
         do {
-            self.countriesResults = try await countriesFetcher.fetchCountryData().sorted(by: {$0.cases > $1.cases})
+            let fetchCounties = try await countriesFetcher.fetchCountryData().sorted(by: {$0.cases > $1.cases})
+            DispatchQueue.main.async {
+                self.countriesResults = fetchCounties
+            }
+            
         } catch {
             os_log("Network error in fetchCountryData. error", log: Log.networkLogger, type: .error)
         }
