@@ -32,6 +32,8 @@ struct CountriesView: View {
     }
 }
 
+// MARK: - sort button
+
 private extension CountriesView {
     
     var sortButtonMenu: some View {
@@ -70,6 +72,7 @@ private extension CountriesView {
     
 }
 
+// MARK: - CountryDetailCellView
 struct CountryDetailCellView: View {
     
     let givenCountry: CountryDatum
@@ -95,7 +98,13 @@ struct CountryDetailCellView: View {
             }
         }
         .task {
-            self.flagQuery.getFlag(flagImageURL: self.givenCountry.countryInfo.flag)
+            //self.flagQuery.getFlag(flagImageURL: self.givenCountry.countryInfo.flag)
+            do {
+                try await self.flagQuery.getCountryFlag(flatImageURL: self.givenCountry.countryInfo.flag)
+            } catch let error {
+                print("Flag not retrieved. Error: \(error.localizedDescription)")
+            }
+            
         }
     }
     
