@@ -91,7 +91,7 @@ extension CountryFetcher: CountriesFetchable {
         do {
             return try JSONDecoder().decode(CountryData.self, from: data)
         } catch let error {
-            os_log("Decoding error in CountryFetcher: %@", log: Log.decodingLogger, type: .error, error.localizedDescription)
+            Log.decodingLogger.error("Decoding error in CountryFetcher: \(error.localizedDescription)")
             throw CountryPublisherErrors.decoding(description: "Error decoding: \(error)")
         }
     }

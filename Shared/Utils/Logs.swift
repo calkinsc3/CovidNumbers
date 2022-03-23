@@ -14,16 +14,15 @@ private let subsystem = "com.c3.CovidNumbers"
 
 struct Log {
     //create log for decoding data structures
-    static let decodingLogger = OSLog(subsystem: subsystem, category: "decoding")
-    static let fileSystemLogger = OSLog(subsystem: subsystem, category: "filesystem")
-    static let locationSystemLogger = OSLog(subsystem: subsystem, category: "cl-location")
-    static let mapViewLogger = OSLog(subsystem: subsystem, category: "mapview")
-    static let subscriberLogger = OSLog(subsystem: subsystem, category: "combine-subscriber")
-    static let publisherLogger = OSLog(subsystem: subsystem, category: "combine-publisher")
-    static let networkLogger = OSLog(subsystem: subsystem, category: "network")
-    static let viewLogger = OSLog(subsystem: subsystem, category: "views")
-    static let viewModelLogger = OSLog(subsystem: subsystem, category: "viewModels")
-    static let coreDataLogger = OSLog(subsystem: subsystem, category: "coredata")
-    static let unknownErrorLogger = OSLog(subsystem: subsystem, category: "unknown")
-    
+    static let decodingLogger = Logger(subsystem: subsystem, category: "decoding")
+    static let fileSystemLogger = Logger(subsystem: subsystem, category: "filesystem")
+    static let locationSystemLogger = Logger(subsystem: subsystem, category: "cl-location")
+    static let mapViewLogger = Logger(subsystem: subsystem, category: "mapview")
+    static let subscriberLogger = Logger(subsystem: subsystem, category: "combine-subscriber")
+    static let publisherLogger = Logger(subsystem: subsystem, category: "combine-publisher")
+    static let networkLogger = Logger(subsystem: subsystem, category: "network")
+    static let viewLogger = Logger(subsystem: subsystem, category: "views")
+    static let viewModelLogger = Logger(subsystem: subsystem, category: "viewModels")
+    static let coreDataLogger = Logger(subsystem: subsystem, category: "coredata")
+    static let unknownErrorLogger = Logger(subsystem: subsystem, category: "unknown")
 }

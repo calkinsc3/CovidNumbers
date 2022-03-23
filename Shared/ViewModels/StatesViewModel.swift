@@ -23,7 +23,8 @@ class StatesViewModel: ObservableObject {
         do {
             self.stateResults = try await stateDataFetcher.fectchStateData().sorted(by: {$0.cases > $1.cases})
         } catch {
-            os_log("Network error in getStateData. error", log: Log.networkLogger, type: .error)
+            //os_log("Network error in getStateData. error", log: Log.networkLogger, type: .error)
+            Log.networkLogger.error("Network error in getStateData. error")
         }
     }
     
@@ -53,9 +54,9 @@ class StateVaccineViewModel: ObservableObject {
                 switch completion {
                 case .failure(let publisherError) :
                     switch publisherError as PublisherError {
-                    case .network: os_log("Network error in fetchVaccinationData.", log: Log.networkLogger, type: .error)
-                    case .parsing: os_log("Parsing error in fetchVaccinationData.", log: Log.decodingLogger, type: .error)
-                    case .unknown: os_log("Unknown error in fetchVaccinationData.", log: Log.unknownErrorLogger, type: .error)
+                    case .network: Log.networkLogger.error("Network error in fetchVaccinationData.")
+                    case .parsing: Log.decodingLogger.error("Parsing error in fetchVaccinationData.")
+                    case .unknown: Log.unknownErrorLogger.error("Unknown error in fetchVaccinationData.")
                     }
                 case .finished:
                     break

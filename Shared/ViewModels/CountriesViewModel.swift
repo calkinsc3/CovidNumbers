@@ -28,9 +28,9 @@ class CountriesViewModel: ObservableObject {
                 switch completion {
                 case .failure(let publisherError) :
                     switch publisherError as PublisherError {
-                        case .network: os_log("Network error in fetchAllCountries.", log: Log.networkLogger, type: .error)
-                        case .parsing: os_log("Parsing error in fetchAllCountries.", log: Log.decodingLogger, type: .error)
-                        case .unknown: os_log("Unknown error in fetchAllCountries.", log: Log.unknownErrorLogger, type: .error)
+                    case .network: Log.networkLogger.error("Network error in fetchAllCountries.")
+                    case .parsing: Log.decodingLogger.error("Parsing error in fetchAllCountries.")
+                    case .unknown: Log.unknownErrorLogger.error("Unknown error in fetchAllCountries.")
                     }
                 case .finished:
                     break
@@ -47,14 +47,12 @@ class CountriesViewModel: ObservableObject {
             let fetchCounties = try await countriesFetcher.fetchCountryData().sorted(by: {$0.cases > $1.cases})
             DispatchQueue.main.async {
                 self.countriesResults = fetchCounties
+                Log.viewModelLogger.log("Country count is \(fetchCounties.count)")
             }
             
         } catch {
-            os_log("Network error in fetchCountryData. error", log: Log.networkLogger, type: .error)
+            Log.networkLogger.error("Network error in fetchCountryData. error")
         }
     }
-    
-    
-    
-    
+
 }

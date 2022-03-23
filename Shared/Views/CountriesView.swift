@@ -98,7 +98,6 @@ struct CountryDetailCellView: View {
             }
         }
         .task {
-            //self.flagQuery.getFlag(flagImageURL: self.givenCountry.countryInfo.flag)
             do {
                 try await self.flagQuery.getCountryFlag(flatImageURL: self.givenCountry.countryInfo.flag)
             } catch let error {
