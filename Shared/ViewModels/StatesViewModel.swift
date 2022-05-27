@@ -48,35 +48,35 @@ class StateVaccineViewModel: ObservableObject {
     
     func fetchStateVaccines(givenState state: String) {
         
-        stateDataFetcher.fetchVaccine(forState: state)
-            .receive(on: DispatchQueue.main)
-            .sink { (completion) in
-                switch completion {
-                case .failure(let publisherError) :
-                    switch publisherError as PublisherError {
-                    case .network: Log.networkLogger.error("Network error in fetchVaccinationData.")
-                    case .parsing: Log.decodingLogger.error("Parsing error in fetchVaccinationData.")
-                    case .unknown: Log.unknownErrorLogger.error("Unknown error in fetchVaccinationData.")
-                    }
-                case .finished:
-                    break
-                }
-                
-            } receiveValue: { (stateVaccines) in
-                
-                let mappedNumberOfVaccines = stateVaccines.timeline
-                    .map({NumberVaccinate(date: $0.key, vaccinated: $0.value)})
-                    .sorted { (firstVaccinated, secondVaccinated) -> Bool in
-                        guard let realDate1 = firstVaccinated.realDate,
-                              let realDate2 = secondVaccinated.realDate else {
-                            return false
-                        }
-                        return realDate1 > realDate2
-                    }
-                
-                self.numberVaccinated = mappedNumberOfVaccines
-            }
-            .store(in: &disposables)
+//        stateDataFetcher.fetchVaccine(forState: state)
+//            .receive(on: DispatchQueue.main)
+//            .sink { (completion) in
+//                switch completion {
+//                case .failure(let publisherError) :
+//                    switch publisherError as PublisherError {
+//                    case .network: Log.networkLogger.error("Network error in fetchVaccinationData.")
+//                    case .parsing: Log.decodingLogger.error("Parsing error in fetchVaccinationData.")
+//                    case .unknown: Log.unknownErrorLogger.error("Unknown error in fetchVaccinationData.")
+//                    }
+//                case .finished:
+//                    break
+//                }
+//
+//            } receiveValue: { (stateVaccines) in
+//
+//                let mappedNumberOfVaccines = stateVaccines.timeline
+//                    .map({NumberVaccinate(date: $0.key, vaccinated: $0.value)})
+//                    .sorted { (firstVaccinated, secondVaccinated) -> Bool in
+//                        guard let realDate1 = firstVaccinated.realDate,
+//                              let realDate2 = secondVaccinated.realDate else {
+//                            return false
+//                        }
+//                        return realDate1 > realDate2
+//                    }
+//
+//                self.numberVaccinated = mappedNumberOfVaccines
+//            }
+//            .store(in: &disposables)
     }
 }
 

@@ -8,58 +8,60 @@
 import Foundation
 import Combine
 
-//MARK:- StatesFetcher
-class StatesFetcher {
+// MARK: - StatesFetcher
+final class StatesFetcher: NSObject {
     
-    private let session: URLSession
+    private var session: URLSession?
     
-    init() {
-        self.session = URLSession.shared
+    override init() {
+        super.init()
+        
+        self.session = URLSession(configuration: .default, delegate: self, delegateQueue: .main)
     }
     
     
 }
 
-//MARK: - Fetchablex
-extension StatesFetcher: StatesFetchable {
+// MARK: - Fetchable
+extension StatesFetcher {
     
-    func fetchAllStates() -> StatesPublisher {
-        return stateItems(with: self.makeAllStateComponents(sortBy: .active, includeYesterday: true))
-    }
+//    func fetchAllStates() -> StatesPublisher {
+//        //return stateItems(with: self.makeAllStateComponents(sortBy: .active, includeYesterday: true))
+//    }
+//
+//    func fetchGivenStates(stateToSearch givenStates: [String]) -> StatesPublisher {
+//        //return stateItems(with: self.makeSpecificStateComponents(givenStates: givenStates))
+//    }
+//
+//    func fetchVaccine(forState state: String) -> StateVaccinePublisher {
+//        //return stateItems(with: self.makeSpecificStateVaccineComponents(givenState: state))
+//    }
     
-    func fetchGivenStates(stateToSearch givenStates: [String]) -> StatesPublisher {
-        return stateItems(with: self.makeSpecificStateComponents(givenStates: givenStates))
-    }
+    // MARK: - Network Adaptor
+//    private func stateItems<T:Decodable>(with components:URLComponents) -> AnyPublisher<T, PublisherError> {
+//
+//        guard let url = components.url else {
+//            return Fail(error: PublisherError.network(description: "Unable to get state URL")).eraseToAnyPublisher()
+//        }
+//
+//        return session?.dataTaskPublisher(for: url)
+//            .mapError { error in
+//                PublisherError(error)
+//            }
+//            .flatMap { returnedPair in
+//                decode(returnedPair.data)
+//            }
+//            .eraseToAnyPublisher()
+//    }
     
-    func fetchVaccine(forState state: String) -> StateVaccinePublisher {
-        return stateItems(with: self.makeSpecificStateVaccineComponents(givenState: state))
-    }
-    
-    //MARK:- Network Adaptor
-    private func stateItems<T:Decodable>(with components:URLComponents) -> AnyPublisher<T, PublisherError> {
-        
-        guard let url = components.url else {
-            return Fail(error: PublisherError.network(description: "Unable to get state URL")).eraseToAnyPublisher()
-        }
-        
-        return session.dataTaskPublisher(for: url)
-            .mapError { error in
-                PublisherError(error)
-            }
-            .flatMap { returnedPair in
-                decode(returnedPair.data)
-            }
-            .eraseToAnyPublisher()
-    }
-    
-    //MARK: - async/await version
+    // MARK: - async/await version
     func fectchStateData() async throws -> StateData {
         
-        guard let url = self.makeAllStateComponents(sortBy: .active, includeYesterday: true).url else {
+        guard let url = self.makeAllStateComponents(sortBy: .active, includeYesterday: true).url, let localSession = self.session else {
             throw StatePublisherErrors.urlError(description: "Could not create All States URL")
         }
         
-        let (data, response) = try await self.session.data(from: url)
+        let (data, response) = try await localSession.data(from: url)
         
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
             throw StatePublisherErrors.apiError(description: "Returned a non-200")
@@ -73,7 +75,7 @@ extension StatesFetcher: StatesFetchable {
     }
 }
 
-//MARK:- Endpoint Builder
+// MARK: - Endpoint Builder
 private extension StatesFetcher {
     
     func makeAllStateComponents(sortBy sort: SortOptions, includeYesterday yesterday: Bool) -> URLComponents {
@@ -111,5 +113,14 @@ private extension StatesFetcher {
         
         return components
     }
+}
+
+// MARK: - URLSessionDelegate
+extension StatesFetcher: URLSessionTaskDelegate {
+   
+    func urlSession(_ session: URLSession, task: URLSessionTask, didFinishCollecting metrics: URLSessionTaskMetrics) {
+        print("in metrices: \(metrics)")
+    }
+   
 }
 
